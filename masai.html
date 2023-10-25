@@ -19,10 +19,10 @@
 <script>
     var gender = document.getElementById("gender");
     var display = document.getElementById("display");
-    let name = document.getElementById("name").value;
+    let name = document.getElementById("name");
     function show()
         {
-            // display.innerText = name.value;
-            console.log(name)
+            display.innerText = name.value+" "+gender.value;
+            // console.log(name)
         }
 </script>
