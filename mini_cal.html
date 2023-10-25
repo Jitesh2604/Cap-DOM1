@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {
+            /* border: 1px solid red; */
+
+            display: flex;
+            justify-content: space-around;
+            color: grey;
+            height: 50px;
+        }
+        #main>input{
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 10px;
+            width: 60%;
+            text-align: center;
+        }
+        #buttons {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px;
+            width: 90%;
+        }
+        button{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <input id="firstNo" placeholder="Enter 1st Number" >
+        <input id="secondNo" type="number" placeholder="Enter 2nd Number"  >
+    </div>
+    <div id="buttons">
+        <button onclick="add()">Add</button>
+        <button onclick="subtract()">Subtract</button>
+        <button onclick="multiply()">Multiply</button>
+        <button onclick="divide()">Divide</button>
+    </div>
+</body>
+<script>
+    var num1 = document.getElementById("firstNo");
+    var num2 = document.getElementById("secondNo");
+    
+    function add(){
+        // var num1 = document.getElementById("firstNo").value;
+        // var num2 = document.getElementById("secondNo").value;
+        let added = Number(num1.value) + Number(num2.value);
+        alert(added)
+    }
+
+    function subtract(){
+        let sub = Number(num1.value) - Number(num2.value);
+        alert(sub)
+    }
+
+    function multiply(){
+        let mult = Number(num1.value) * Number(num2.value);
+        alert(mult)
+    }
+
+    function divide(){
+        let div = Number(num1.value) / Number(num2.value);
+        alert(div)
+    }
+</script>
+</html>
