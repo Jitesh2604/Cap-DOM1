@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #calculator {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 300px;
+    }
+    #display {
+      font-size: 2em;
+      padding: 10px;
+      text-align: right;
+    }
+    .button {
+      border: none;
+      outline: none;
+      font-size: 1em;
+      cursor: pointer;
+      width: 75px;
+      height: 75px;
+      display: inline-block;
+      background-color: #f0f0f0;
+    }
+    .button.operator {
+      background-color: #f0c040;
+    }
+    .button.double {
+      width: 150px;
+    }
+  </style>
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <div id="calculator">
+    <div id="display">0</div>
+    <button class="button" onclick="clearDisplay()">C</button>
+    <button class="button" onclick="appendNumber('7')">7</button>
+    <button class="button" onclick="appendNumber('8')">8</button>
+    <button class="button" onclick="appendNumber('9')">9</button>
+    <button class="button operator" onclick="setOperator('/')">/</button>
+    <button class="button" onclick="appendNumber('4')">4</button>
+    <button class="button" onclick="appendNumber('5')">5</button>
+    <button class="button" onclick="appendNumber('6')">6</button>
+    <button class="button operator" onclick="setOperator('*')">*</button>
+    <button class="button" onclick="appendNumber('1')">1</button>
+    <button class="button" onclick="appendNumber('2')">2</button>
+    <button class="button" onclick="appendNumber('3')">3</button>
+    <button class="button operator" onclick="setOperator('-')">-</button>
+    <button class="button double" onclick="appendNumber('0')">0</button>
+    <button class="button" onclick="appendDecimal()">.</button>
+    <button class="button operator" onclick="calculateResult()">=</button>
+    <button class="button operator" onclick="setOperator('+')">+</button>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+    let currentInput = '';
+    let operator = '';
+    let firstOperand = null;
+
+    function clearDisplay() {
+      display.textContent = '0';
+      currentInput = '';
+      operator = '';
+      firstOperand = null;
+    }
+
+    function appendNumber(number) {
+      if (currentInput === '0') {
+        currentInput = number;
+      } else {
+        currentInput += number;
+      }
+      updateDisplay();
+    }
+
+    function appendDecimal() {
+      if (!currentInput.includes('.')) {
+        currentInput += '.';
+        updateDisplay();
+      }
+    }
+
+    function setOperator(op) {
+      if (firstOperand === null) {
+        firstOperand = parseFloat(currentInput);
+        operator = op;
+        currentInput = '';
+      } else {
+        calculateResult();
+        operator = op;
+      }
+    }
+
+    function calculateResult() {
+      if (operator && currentInput !== '') {
+        const secondOperand = parseFloat(currentInput);
+        switch (operator) {
+          case '+':
+            currentInput = (firstOperand + secondOperand).toString();
+            break;
+          case '-':
+            currentInput = (firstOperand - secondOperand).toString();
+            break;
+          case '*':
+            currentInput = (firstOperand * secondOperand).toString();
+            break;
+          case '/':
+            if (secondOperand !== 0) {
+              currentInput = (firstOperand / secondOperand).toString();
+            } else {
+              currentInput = 'Error';
+            }
+            break;
+        }
+        operator = '';
+        firstOperand = parseFloat(currentInput);
+        updateDisplay();
+      }
+    }
+
+    function updateDisplay() {
+      display.textContent = currentInput;
+    }
+  </script>
+</body>
+</html>
