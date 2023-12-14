@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Info App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="title">
+        <p>Movie.<span class="title_span">Info..</span></p>
+    </div>
+    <div id="cont">
+        <div id="search-contant">
+            <form onsubmit="event.preventDefault(), getData()">
+                <label for="Movie">Movie:</label>
+                <input type="text" placeholder="Search Movie ..." id="movieSearch">
+                <button type="submit">Submit</button>
+            </form>    
+        </div>
+    </div>
+    <div id="display"></div>
+    <script src="./script .js"></script>
+</body>
+</html>
